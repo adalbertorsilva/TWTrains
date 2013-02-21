@@ -9,7 +9,7 @@ public class RouteAB extends Route{
 	public RouteAB(){
 		distance = 5;
 		origin = new City('A');
-		destiny = new City('D');
+		destiny = new City('B');
 		
 	}
 }

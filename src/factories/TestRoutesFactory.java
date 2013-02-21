@@ -2,7 +2,7 @@ package factories;
 
 import java.util.List;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 import routes.Route;
@@ -36,10 +36,10 @@ public class TestRoutesFactory {
 
 		final List<Route> ways = RoutesFactory.createRoutesFromTheCity('A');
 
-		Assert.assertEquals(ways.size(), 3);
-		Assert.assertTrue(ways.contains(new RouteAB()));
-		Assert.assertTrue(ways.contains(new RouteAD()));
-		Assert.assertTrue(ways.contains(new RouteAE()));
+		assertEquals(ways.size(), 3);
+		assertTrue(ways.contains(new RouteAB()));
+		assertTrue(ways.contains(new RouteAD()));
+		assertTrue(ways.contains(new RouteAE()));
 
 	}
 
@@ -48,8 +48,8 @@ public class TestRoutesFactory {
 
 		final List<Route> ways = RoutesFactory.createRoutesFromTheCity('B');
 
-		Assert.assertEquals(ways.size(), 1);
-		Assert.assertTrue(ways.contains(new RouteBC()));
+		assertEquals(ways.size(), 1);
+		assertTrue(ways.contains(new RouteBC()));
 
 	}
 
@@ -58,9 +58,9 @@ public class TestRoutesFactory {
 
 		final List<Route> ways = RoutesFactory.createRoutesFromTheCity('C');
 
-		Assert.assertEquals(ways.size(), 2);
-		Assert.assertTrue(ways.contains(new RouteCD()));
-		Assert.assertTrue(ways.contains(new RouteCE()));
+		assertEquals(ways.size(), 2);
+		assertTrue(ways.contains(new RouteCD()));
+		assertTrue(ways.contains(new RouteCE()));
 
 	}
 
@@ -69,9 +69,9 @@ public class TestRoutesFactory {
 
 		final List<Route> ways = RoutesFactory.createRoutesFromTheCity('D');
 
-		Assert.assertEquals(ways.size(), 2);
-		Assert.assertTrue(ways.contains(new RouteDC()));
-		Assert.assertTrue(ways.contains(new RouteDE()));
+		assertEquals(ways.size(), 2);
+		assertTrue(ways.contains(new RouteDC()));
+		assertTrue(ways.contains(new RouteDE()));
 
 	}
 
@@ -80,8 +80,8 @@ public class TestRoutesFactory {
 
 		final List<Route> ways = RoutesFactory.createRoutesFromTheCity('E');
 
-		Assert.assertEquals(ways.size(), 1);
-		Assert.assertTrue(ways.contains(new RouteEB()));
+		assertEquals(ways.size(), 1);
+		assertTrue(ways.contains(new RouteEB()));
 
 	}
 

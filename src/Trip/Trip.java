@@ -24,7 +24,7 @@ public class Trip {
 		while(i < cities.size() - 1){
 			
 			City origintCity = new City(cities.get(i));
-			City destinyCity = new City(cities.get(i + i));
+			City destinyCity = new City(cities.get(i + 1));
 			
 			Route route =  findRoute(origintCity, destinyCity);
 			
