@@ -1,6 +1,6 @@
 package city;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 import routes.Route;
@@ -47,7 +47,7 @@ public class TestCity {
 	public void testNameFromCityA() {
 
 		final City cityA = new City('A');
-		Assert.assertEquals(cityA.getCityName(), new Character('A'));
+		assertEquals(cityA.getCityName(), new Character('A'));
 
 	}
 
@@ -55,10 +55,10 @@ public class TestCity {
 	public void testAmountOfRoutesFromCityA() {
 
 		final City cityA = new City('A');
-		Assert.assertEquals(cityA.getRoutesFromThisCity().size(), 3);
-		Assert.assertTrue(cityA.getRoutesFromThisCity().contains(new RouteAB()));
-		Assert.assertTrue(cityA.getRoutesFromThisCity().contains(new RouteAD()));
-		Assert.assertTrue(cityA.getRoutesFromThisCity().contains(new RouteAE()));
+		assertEquals(cityA.getRoutesFromThisCity().size(), 3);
+		assertTrue(cityA.getRoutesFromThisCity().contains(new RouteAB()));
+		assertTrue(cityA.getRoutesFromThisCity().contains(new RouteAD()));
+		assertTrue(cityA.getRoutesFromThisCity().contains(new RouteAE()));
 	}
 
 	@Test
@@ -67,7 +67,7 @@ public class TestCity {
 		final City cityA = new City('A');
 
 		for (final Route route : cityA.getRoutesFromThisCity()) {
-			Assert.assertEquals(route.getOrigin(), cityA);
+			assertEquals(route.getOrigin(), cityA);
 		}
 	}
 }

@@ -19,6 +19,10 @@ public abstract class Route {
 
 		return this.origin;
 	}
+	
+	public City getDestiny(){
+		return this.destiny;
+	}
 
 	@Override
 	public boolean equals(final Object obj) {
