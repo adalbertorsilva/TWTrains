@@ -1,8 +1,12 @@
 package city;
 
-import static org.junit.Assert.*;
-
+import org.junit.Assert;
 import org.junit.Test;
+
+import routes.Route;
+import routes.RouteAB;
+import routes.RouteAD;
+import routes.RouteAE;
 
 public class TestCity {
 
@@ -38,14 +42,32 @@ public class TestCity {
 	 * 15. Test if the origin from the routes is the city E
 	 * 
 	 */
-	
-	
+
 	@Test
 	public void testNameFromCityA() {
-		
-		City cityA = new City('A');
-		assertEquals(cityA.getCityName(), new Character('A'));
-		
+
+		final City cityA = new City('A');
+		Assert.assertEquals(cityA.getCityName(), new Character('A'));
+
 	}
 
+	@Test
+	public void testAmountOfRoutesFromCityA() {
+
+		final City cityA = new City('A');
+		Assert.assertEquals(cityA.getRoutesFromThisCity().size(), 3);
+		Assert.assertTrue(cityA.getRoutesFromThisCity().contains(new RouteAB()));
+		Assert.assertTrue(cityA.getRoutesFromThisCity().contains(new RouteAD()));
+		Assert.assertTrue(cityA.getRoutesFromThisCity().contains(new RouteAE()));
+	}
+
+	@Test
+	public void testIfCityIsTheOriginOfItsRoutes() {
+
+		final City cityA = new City('A');
+
+		for (final Route route : cityA.getRoutesFromThisCity()) {
+			Assert.assertEquals(route.getOrigin(), cityA);
+		}
+	}
 }
