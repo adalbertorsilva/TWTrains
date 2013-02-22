@@ -11,6 +11,8 @@ import exceptions.RouteNotFoundException;
 public class Trip {
 
 	private final List<Character> cities;
+	
+	private Integer numberOfTrips = 0;
 
 	public Trip(final Character... cities) {
 
@@ -47,6 +49,32 @@ public class Trip {
 		
 		throw new RouteNotFoundException();
 		
+	}
+
+	public Integer getNumberOfTrips(Integer maximumNumberOfStops) {
+		
+		numberOfTrips = 0;
+		return findTrips(maximumNumberOfStops, new City(cities.get(0)), 1);
+	}
+
+	private Integer findTrips(Integer maximumNumberOfStops, City originCity, int numberOfStops) {
+		while(numberOfStops < maximumNumberOfStops){
+			
+			routes:
+			for(Route route : originCity.getRoutesFromThisCity()){
+				
+				if(route.getDestiny().equals(new City(cities.get(cities.size() -1)))){
+					numberOfTrips++;
+					continue routes;
+				}
+				
+				findTrips(maximumNumberOfStops, route.getDestiny(), ++numberOfStops);
+			}
+		
+			numberOfStops++;
+		}
+		
+		return numberOfTrips;
 	}
 
 }

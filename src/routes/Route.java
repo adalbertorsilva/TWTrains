@@ -25,6 +25,17 @@ public abstract class Route {
 	}
 
 	@Override
+	public String toString() {
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append(origin.toString())
+			   .append(" -> ")
+			   .append(destiny.toString());
+		
+		return builder.toString();
+	}
+	
+	@Override
 	public boolean equals(final Object obj) {
 
 		if ((obj != null) && (obj instanceof Route)) {

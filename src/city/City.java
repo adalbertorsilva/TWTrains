@@ -25,6 +25,11 @@ public class City {
 	}
 
 	@Override
+	public String toString() {
+		return cityName.toString();
+	}
+	
+	@Override
 	public boolean equals(final Object obj) {
 
 		if ((obj != null) && (obj instanceof City)) {

@@ -13,7 +13,7 @@ public class TestTrip {
 	 * 
 	 *  2. Test method that calculate the total trip distance (A-B-C / A-D / A-D-C / A-E-B-C-D) 
 	 *  
-	 *  
+	 *  3. Test method to find a number of trips of a city to another with a maximum number of stops
 	 */
 
 	@Test(expected = RouteNotFoundException.class)
@@ -47,5 +47,12 @@ public class TestTrip {
 		final Trip trip = new Trip('A','E','B','C','D');
 		assertEquals(trip.getTotalDistance(), new Integer(22));
 	}
+	
+	@Test
+	public void testGetNumberOfTripsWithAMaximumNumberOfStops(){
+		Trip trip = new Trip('C','C');
+		assertEquals(trip.getNumberOfTrips(3), new Integer(2));
+	}
+	
 
 }
