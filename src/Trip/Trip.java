@@ -58,33 +58,45 @@ public class Trip {
 	public Integer getAmountOfTrips(final Integer maximumNumberOfStops) {
 
 		this.numberOfTrips = 0;
+		
+		Set<Set<Route>> tripRoutes = new LinkedHashSet<Set<Route>>();
+		Set<Route> tripRoute = new LinkedHashSet<Route>();
+		
 		return this.findAmountOfTrips(maximumNumberOfStops,
-				tripStart(), 0, new LinkedHashSet<Route>());
+				tripStart(), 0, new LinkedHashSet<Route>(), tripRoutes, tripRoute);
 	}
 
-	private Integer findAmountOfTrips(final Integer maximumNumberOfStops, final City originCity, int numberOfStops, final Set<Route> traveledRoutes) {
+	private Integer findAmountOfTrips(final Integer maximumNumberOfStops, final City originCity, int numberOfStops, 
+									  final Set<Route> traveledRoutes, Set<Set<Route>> tripRoutes, Set<Route> tripRoute) {
 
 		routes: for (final Route route : originCity.getRoutesFromThisCity()) {
 
 			if (route.getOrigin().equals(tripStart()) && this.isRouteNeverTraveled(traveledRoutes, route)) {
 				numberOfStops = 0;
+				tripRoute = new LinkedHashSet<Route>();
 			}
 
-			while (numberOfStops <= maximumNumberOfStops) {
-				if (route.getOrigin().equals(tripDestiny()) && this.isRouteNeverTraveled(traveledRoutes, route)) {
-					this.numberOfTrips++;
+			tripRoute.add(route);
+
+			while (numberOfStops < maximumNumberOfStops) {
+				if (route.getDestiny().equals(tripDestiny()) && this.isRouteNeverTraveled(traveledRoutes, route)) {
+					
+					tripRoutes.add(tripRoute);
+					tripRoute = new LinkedHashSet<Route>(tripRoute);
 					traveledRoutes.add(route);
 					continue routes;
 				} else {
 					traveledRoutes.add(route);
-					this.findAmountOfTrips(maximumNumberOfStops, route.getDestiny(), ++numberOfStops, traveledRoutes);
+					this.findAmountOfTrips(maximumNumberOfStops, route.getDestiny(), ++numberOfStops, traveledRoutes, tripRoutes, tripRoute);
 				}
 
 			}
+			
+			tripRoute = new LinkedHashSet<Route>();
 
 		}
 
-		return this.numberOfTrips;
+		return tripRoutes.size();
 	}
 
 	private City tripDestiny() {
