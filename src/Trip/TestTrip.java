@@ -51,7 +51,7 @@ public class TestTrip {
 	@Test
 	public void testGetNumberOfTripsWithAMaximumNumberOfStops(){
 		Trip trip = new Trip('C','C');
-		assertEquals(trip.getNumberOfTrips(3), new Integer(2));
+		assertEquals(trip.getAmountOfTrips(3), new Integer(2));
 	}
 	
 
