@@ -67,7 +67,6 @@ public class Trip {
 				tripStart(), 0, new LinkedHashSet<Route>(), tripRoutes, tripRoute);
 	}
 
-	private Integer findAmountOfTrips(final Integer maximumNumberOfStops, final City originCity, int numberOfStops, 
 									  final Set<Route> traveledRoutes, Set<Set<Route>> tripRoutes, Set<Route> tripRoute) {
 	private Integer findAmountOfTrips(Integer maximumNumberOfStops, City originCity, int numberOfStops, 
 									  Set<Route> traveledRoutes, Set<Set<Route>> tripRoutes, Set<Route> tripRoute) {
