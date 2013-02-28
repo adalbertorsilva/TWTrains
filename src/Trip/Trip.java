@@ -55,7 +55,6 @@ public class Trip {
 
 
 
-	public Integer getAmountOfTrips(final Integer maximumNumberOfStops) {
 	public Integer getAmountOfTrips(Integer maximumNumberOfStops) {
 
 		this.numberOfTrips = 0;
@@ -67,11 +66,9 @@ public class Trip {
 				tripStart(), 0, new LinkedHashSet<Route>(), tripRoutes, tripRoute);
 	}
 
-									  final Set<Route> traveledRoutes, Set<Set<Route>> tripRoutes, Set<Route> tripRoute) {
 	private Integer findAmountOfTrips(Integer maximumNumberOfStops, City originCity, int numberOfStops, 
 									  Set<Route> traveledRoutes, Set<Set<Route>> tripRoutes, Set<Route> tripRoute) {
 
-		routes: for (final Route route : originCity.getRoutesFromThisCity()) {
 		routes: for (Route route : originCity.getRoutesFromThisCity()) {
 
 			if (route.getOrigin().equals(tripStart()) && this.isRouteNeverTraveled(traveledRoutes, route)) {
