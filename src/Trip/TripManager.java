@@ -35,7 +35,7 @@ public class TripManager {
 		return findShortestRoute(tripStart());
 	}
 	
-	public Integer getTripsThatHaveWaySmallerThan(Integer wayLength){
+	public Integer getTripsThatHaveWaySmallerThan(Integer wayLength) throws RouteNotFoundException{
 		return findTripsThatHaveWaysSmallerThan(tripStart(), wayLength);	
 	}
 	
@@ -121,24 +121,31 @@ public class TripManager {
 		return shortestRoute(storedTripRoutes);
 	}
 
-	private Integer findTripsThatHaveWaysSmallerThan(City originCity, Integer wayLength){
+	private Integer findTripsThatHaveWaysSmallerThan(City originCity, Integer wayLength) throws RouteNotFoundException{
+		
+		//CDC, CEBC, CEBCDC, CDCEBC, CDEBC, CEBCEBC, CEBCEBCEBC
+		
 		for (Route route : originCity.getRoutesFromThisCity()) {
 
 			updateTripRoute(route);
 
-			if (isTripsDestiny(route)) {
+			if (isTripsDestiny(route) && getTripDistance() < wayLength) {
 				storedTripRoutes.add(new ArrayList<Route>(actualTripRoute));
 				continue;
 			} else {
 				this.findTripsThatHaveWaysSmallerThan(route.getDestiny(), wayLength);
 			}
-			
-			actualTripRoute = new ArrayList<Route>();
 
 		}
+		
+		removeLastRoute();
 
 		return storedTripRoutes.size();
 		
+	}
+	
+	private Integer getTripDistance() throws RouteNotFoundException{
+		return new Trip(actualTripRoute).getTotalDistance();
 	}
 	
 	private Integer shortestRoute(Collection<Collection<Route>> tripRoutes) throws RouteNotFoundException{

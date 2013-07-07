@@ -36,11 +36,11 @@ public class TestTripManager {
 		assertEquals(tripManager.getShortestRoute(), new Integer(9));
 	}
 	
-//	@Test
-//	public void testFindingRoutesFromCToCWithAWaySmallerThan30() throws RouteNotFoundException{
-//		Trip trip = new Trip('C','C');
-//		TripManager tripManager = new TripManager(trip);
-//		assertEquals(tripManager.getRoutesThatHaveWaysSmallerThan(30), new Integer(7));
-//	}
+	@Test
+	public void testFindingRoutesFromCToCWithAWaySmallerThan30() throws RouteNotFoundException{
+		Trip trip = new Trip('C','C');
+		TripManager tripManager = new TripManager(trip);
+		assertEquals(tripManager.getTripsThatHaveWaySmallerThan(30), new Integer(7));
+	}
 
 }
