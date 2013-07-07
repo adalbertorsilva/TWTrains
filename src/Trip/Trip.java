@@ -1,9 +1,8 @@
-package Trip;
 
+package Trip;
 import java.util.Arrays;
-import java.util.LinkedHashSet;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import routes.Route;
 import city.City;
@@ -11,16 +10,31 @@ import exceptions.RouteNotFoundException;
 
 public class Trip {
 
-	private final List<Character> cities;
-
-	private Integer numberOfTrips = 0;
-
-	public Trip(final Character... cities) {
+	private List<Character> cities;
+	
+	private Collection<Route> tripRoutes;
+	
+	public Trip(Character... cities) {
 
 		this.cities = Arrays.asList(cities);
 	}
+	
+	public Trip(final Collection<Route> tripRoutes) {
+
+		this.tripRoutes = tripRoutes;
+	}
 
 	public Integer getTotalDistance() throws RouteNotFoundException {
+
+		if(tripRoutes != null){
+			return getTotalDistanceByRoutes(tripRoutes);
+		}else{
+			return getTotalDistanceByCities(cities);
+		}
+
+	}
+	
+	public Integer getTotalDistanceByCities(List<Character> cities) throws RouteNotFoundException {
 
 		Integer totalDistance = 0;
 		int i = 0;
@@ -39,6 +53,18 @@ public class Trip {
 		return totalDistance;
 
 	}
+	
+	public Integer getTotalDistanceByRoutes(Collection<Route> routes)  {
+
+		Integer totalDistance = 0;
+		
+		for(Route route : routes){
+			totalDistance = totalDistance + route.getDistance();
+		}	
+
+		return totalDistance;
+
+	}
 
 	private Route findRoute(City origintCity, City destinyCity)
 			throws RouteNotFoundException {
@@ -53,65 +79,8 @@ public class Trip {
 
 	}
 
-
-
-	public Integer getAmountOfTrips(Integer maximumNumberOfStops) {
-
-		this.numberOfTrips = 0;
-		
-		Set<Set<Route>> tripRoutes = new LinkedHashSet<Set<Route>>();
-		Set<Route> tripRoute = new LinkedHashSet<Route>();
-		
-		return this.findAmountOfTrips(maximumNumberOfStops,
-				tripStart(), 0, new LinkedHashSet<Route>(), tripRoutes, tripRoute);
-	}
-
-	private Integer findAmountOfTrips(Integer maximumNumberOfStops, City originCity, int numberOfStops, 
-									  Set<Route> traveledRoutes, Set<Set<Route>> tripRoutes, Set<Route> tripRoute) {
-
-		routes: for (Route route : originCity.getRoutesFromThisCity()) {
-
-			if (route.getOrigin().equals(tripStart()) && this.isRouteNeverTraveled(traveledRoutes, route)) {
-				numberOfStops = 0;
-				tripRoute = new LinkedHashSet<Route>();
-			}
-
-			tripRoute.add(route);
-
-			while (numberOfStops < maximumNumberOfStops) {
-				if (route.getDestiny().equals(tripDestiny()) && this.isRouteNeverTraveled(traveledRoutes, route)) {
-					
-					tripRoutes.add(tripRoute);
-					tripRoute = new LinkedHashSet<Route>(tripRoute);
-					traveledRoutes.add(route);
-					continue routes;
-				} else {
-					traveledRoutes.add(route);
-					this.findAmountOfTrips(maximumNumberOfStops, route.getDestiny(), ++numberOfStops, traveledRoutes, tripRoutes, tripRoute);
-				}
-
-			}
-			
-			tripRoute = new LinkedHashSet<Route>();
-
-		}
-
-		return tripRoutes.size();
-	}
-
-	private City tripDestiny() {
-		return new City(this.cities.get(this.cities.size() - 1));
-	}
-
-	private City tripStart() {
-		return new City(this.cities.get(0));
+	public List<Character> getCities() {
+		return cities;
 	}
 	
-	private boolean isRouteNeverTraveled(final Set<Route> seenRoutes, final Route route) {
-
-		return !seenRoutes.contains(route);
-	}
-	
-
-
 }

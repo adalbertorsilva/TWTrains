@@ -7,6 +7,12 @@ import routes.Route;
 import routes.RouteAB;
 import routes.RouteAD;
 import routes.RouteAE;
+import routes.RouteBC;
+import routes.RouteCD;
+import routes.RouteCE;
+import routes.RouteDC;
+import routes.RouteDE;
+import routes.RouteEB;
 
 public class TestCity {
 
@@ -62,12 +68,119 @@ public class TestCity {
 	}
 
 	@Test
-	public void testIfCityIsTheOriginOfItsRoutes() {
+	public void testIfCityAIsTheOriginOfItsRoutes() {
 
 		final City cityA = new City('A');
 
 		for (final Route route : cityA.getRoutesFromThisCity()) {
 			assertEquals(route.getOrigin(), cityA);
+		}
+	}
+	
+	
+	@Test
+	public void testNameFromCityB() {
+
+		final City cityB = new City('B');
+		assertEquals(cityB.getCityName(), new Character('B'));
+
+	}
+
+	@Test
+	public void testAmountOfRoutesFromCityB() {
+
+		final City cityB = new City('B');
+		assertEquals(cityB.getRoutesFromThisCity().size(), 1);
+		assertTrue(cityB.getRoutesFromThisCity().contains(new RouteBC()));
+	}
+
+	@Test
+	public void testIfCityBIsTheOriginOfItsRoutes() {
+
+		final City cityB = new City('B');
+
+		for (final Route route : cityB.getRoutesFromThisCity()) {
+			assertEquals(route.getOrigin(), cityB);
+		}
+	}
+	
+	@Test
+	public void testNameFromCityC() {
+
+		final City cityC = new City('C');
+		assertEquals(cityC.getCityName(), new Character('C'));
+
+	}
+
+	@Test
+	public void testAmountOfRoutesFromCityC() {
+
+		final City cityC = new City('C');
+		assertEquals(cityC.getRoutesFromThisCity().size(), 2);
+		assertTrue(cityC.getRoutesFromThisCity().contains(new RouteCE()));
+		assertTrue(cityC.getRoutesFromThisCity().contains(new RouteCD()));
+	}
+
+	@Test
+	public void testIfCityCIsTheOriginOfItsRoutes() {
+
+		final City cityC = new City('C');
+
+		for (final Route route : cityC.getRoutesFromThisCity()) {
+			assertEquals(route.getOrigin(), cityC);
+		}
+	}
+	
+	@Test
+	public void testNameFromCityD() {
+
+		final City cityD = new City('D');
+		assertEquals(cityD.getCityName(), new Character('D'));
+
+	}
+
+	@Test
+	public void testAmountOfRoutesFromCityD() {
+
+		final City cityD = new City('D');
+		assertEquals(cityD.getRoutesFromThisCity().size(), 2);
+		assertTrue(cityD.getRoutesFromThisCity().contains(new RouteDC()));
+		assertTrue(cityD.getRoutesFromThisCity().contains(new RouteDE()));
+	}
+
+	@Test
+	public void testIfCityDIsTheOriginOfItsRoutes() {
+
+		final City cityD = new City('D');
+
+		for (final Route route : cityD.getRoutesFromThisCity()) {
+			assertEquals(route.getOrigin(), cityD);
+		}
+	}
+	
+	@Test
+	public void testNameFromCityE() {
+
+		final City cityE = new City('E');
+		assertEquals(cityE.getCityName(), new Character('E'));
+
+	}
+
+	@Test
+	public void testAmountOfRoutesFromCityE() {
+
+		final City cityE = new City('E');
+		assertEquals(cityE.getRoutesFromThisCity().size(), 1);
+		assertTrue(cityE.getRoutesFromThisCity().contains(new RouteEB()));
+	}
+
+	@Test
+	public void testIfCityEIsTheOriginOfItsRoutes() {
+
+		final City cityE = new City('E');
+
+		for (final Route route : cityE.getRoutesFromThisCity()) {
+			assertEquals(route.getOrigin(), cityE);
 		}
 	}
 }

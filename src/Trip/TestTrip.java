@@ -1,9 +1,19 @@
 package Trip;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
+import routes.Route;
+import routes.RouteAE;
+import routes.RouteBC;
+import routes.RouteCD;
+import routes.RouteEB;
+
 import exceptions.RouteNotFoundException;
-import static org.junit.Assert.*;
 
 public class TestTrip {
 
@@ -49,9 +59,18 @@ public class TestTrip {
 	}
 	
 	@Test
-	public void testGetNumberOfTripsWithAMaximumNumberOfStops(){
-		Trip trip = new Trip('C','C');
-		assertEquals(trip.getAmountOfTrips(3), new Integer(2));
+	
+	public void testGetTotalDistanceToTripAEBCDByRoutes() throws RouteNotFoundException{
+		
+		List<Route> routes = new ArrayList<Route>();
+		routes.add(new RouteAE());
+		routes.add(new RouteEB());
+		routes.add(new RouteBC());
+		routes.add(new RouteCD());
+		
+		
+		final Trip trip = new Trip(routes);
+		assertEquals(trip.getTotalDistance(), new Integer(22));
 	}
 	
 

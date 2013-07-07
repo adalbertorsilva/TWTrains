@@ -5,6 +5,8 @@ import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import exceptions.RouteNotFoundException;
+
 import routes.Route;
 import routes.RouteAB;
 import routes.RouteAD;
@@ -29,6 +31,23 @@ public class TestRoutesFactory {
 	 * 
 	 * 5. Test ways from E
 	 * 
+	 * 6. Test create route A -> B
+	 * 
+	 * 6. Test create route A -> D
+	 * 
+	 * 6. Test create route A -> E
+	 * 
+	 * 6. Test create route B -> C
+	 * 
+	 * 6. Test create route C -> D
+	 * 
+	 * 6. Test create route C -> E
+	 * 
+	 * 6. Test create route D -> C
+	 * 
+	 * 6. Test create route D -> E
+	 * 
+	 * 6. Test create route E -> B
 	 */
 
 	@Test
@@ -84,5 +103,5 @@ public class TestRoutesFactory {
 		assertTrue(ways.contains(new RouteEB()));
 
 	}
-
+	
 }
