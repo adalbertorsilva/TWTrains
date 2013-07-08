@@ -51,12 +51,10 @@ public class TripManager {
 				if (this.isRouteNeverTraveled(traveledRoutes, route) && isTripsDestiny(route)) {
 					storedTripRoutes.add(new ArrayList<Route>(actualTripRoute));
 					traveledRoutes.add(route);
-					break;
 				} else {
 					traveledRoutes.add(route);
 					this.findAmountOfTripsWithMaximumStops(maximumNumberOfStops, route.getDestiny(), ++numberOfStops, traveledRoutes);
 				}
-
 			}
 			
 			actualTripRoute = new ArrayList<Route>();
@@ -83,7 +81,6 @@ public class TripManager {
 			
 			if (isTripsDestiny(route) && actualTripRoute.size() == exactNumberOfStops) {
 				storedTripRoutes.add(new ArrayList<Route>(actualTripRoute));
-				break;
 			} else {
 				this.findAmountOfTripsWithAExactNumberOfStops(exactNumberOfStops, route.getDestiny());
 			}
@@ -107,10 +104,7 @@ public class TripManager {
 			}
 
 			if ( updateTripRoute(route) && isTripsDestiny(route)) {
-					
 				storedTripRoutes.add(new ArrayList<Route>(actualTripRoute));
-				break;
-				
 			} else {
 				this.findShortestRoute(route.getDestiny());
 			}
@@ -126,16 +120,25 @@ public class TripManager {
 		//CDC, CEBC, CEBCDC, CDCEBC, CDEBC, CEBCEBC, CEBCEBCEBC
 		
 		for (Route route : originCity.getRoutesFromThisCity()) {
-
-			updateTripRoute(route);
+			
+			if(isTravelingInCircles(route)){
+				continue;
+			}
+			
+			if(isLastRouteWithTheSameOrigin(route)){
+				removeLastRoute();
+			}
+			
+			actualTripRoute.add(route);
 
 			if (isTripsDestiny(route) && getTripDistance() < wayLength) {
 				storedTripRoutes.add(new ArrayList<Route>(actualTripRoute));
-				continue;
-			} else {
+			}
+			
+			if(getTripDistance() < wayLength){
 				this.findTripsThatHaveWaysSmallerThan(route.getDestiny(), wayLength);
 			}
-
+			
 		}
 		
 		removeLastRoute();
@@ -198,7 +201,7 @@ public class TripManager {
 	}
 
 	private boolean isTravelingInCircles(Route route) {
-		return actualTripRoute.size() > 2 && 
+		return actualTripRoute.size() >= 2 && 
 				actualTripRoute.get(actualTripRoute.size() -2).equals(route);
 	}
 	
