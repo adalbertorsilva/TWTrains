@@ -22,8 +22,7 @@ public class TripManager {
 	
 	public Integer getAmountOfTripsWithMaximumStops(Integer maximumNumberOfStops) {
 		
-		return this.findAmountOfTripsWithMaximumStops(maximumNumberOfStops,
-				tripStart(), 0, new LinkedHashSet<Route>());
+		return this.findAmountOfTripsWithMaximumStops(maximumNumberOfStops,tripStart());
 	}
 
 	public Integer getAmountOfTripsWithExactlyStops(Integer numberOfStops) throws RouteNotFoundException {
@@ -39,27 +38,29 @@ public class TripManager {
 		return findTripsThatHaveWaysSmallerThan(tripStart(), wayLength);	
 	}
 	
-	private Integer findAmountOfTripsWithMaximumStops(Integer maximumNumberOfStops, City originCity, int numberOfStops, Set<Route> traveledRoutes) {
+	private Integer findAmountOfTripsWithMaximumStops(Integer maximumNumberOfStops, City originCity) {
 
 		for (Route route : originCity.getRoutesFromThisCity()) {
 
-			numberOfStops = verifyStartCity(numberOfStops, traveledRoutes,route);
-			
-			updateTripRoute(route);
-
-			while (numberOfStops < maximumNumberOfStops) {
-				if (this.isRouteNeverTraveled(traveledRoutes, route) && isTripsDestiny(route)) {
-					storedTripRoutes.add(new ArrayList<Route>(actualTripRoute));
-					traveledRoutes.add(route);
-				} else {
-					traveledRoutes.add(route);
-					this.findAmountOfTripsWithMaximumStops(maximumNumberOfStops, route.getDestiny(), ++numberOfStops, traveledRoutes);
-				}
+			if(isLastRouteWithTheSameOrigin(route)){
+				removeLastRoute(actualTripRoute);
 			}
 			
-			actualTripRoute = new ArrayList<Route>();
+			if(actualTripRoute.size() > maximumNumberOfStops){
+				break;
+			}
+			
+			actualTripRoute.add(route);
 
+			if (isTripsDestiny(route) && actualTripRoute.size() <= maximumNumberOfStops) {
+				storedTripRoutes.add(new ArrayList<Route>(actualTripRoute));
+			} else {
+				this.findAmountOfTripsWithMaximumStops(maximumNumberOfStops, route.getDestiny());
+			}
+			
 		}
+		
+		removeLastRoute(actualTripRoute);
 
 		return storedTripRoutes.size();
 	}
@@ -70,7 +71,7 @@ public class TripManager {
 		for (Route route : originCity.getRoutesFromThisCity()) {
 			
 			if(isLastRouteWithTheSameOrigin(route)){
-				removeLastRoute();
+				removeLastRoute(actualTripRoute);
 			}
 			
 			if(actualTripRoute.size() > exactNumberOfStops){
@@ -86,7 +87,7 @@ public class TripManager {
 			}
 		}
 		
-		removeLastRoute();
+		removeLastRoute(actualTripRoute);
 
 		return storedTripRoutes.size();
 	}
@@ -95,12 +96,12 @@ public class TripManager {
 		for (Route route : originCity.getRoutesFromThisCity()) {
 			
 			if(isTravelingInCircles(route)){
-				removeLastRoute();
+				removeLastRoute(actualTripRoute);
 				break;
 			}
 			
 			if(isLastRouteWithTheSameOrigin(route)){
-				removeLastRoute();
+				removeLastRoute(actualTripRoute);
 			}
 
 			if ( updateTripRoute(route) && isTripsDestiny(route)) {
@@ -110,14 +111,12 @@ public class TripManager {
 			}
 		}
 		
-		removeLastRoute();
+		removeLastRoute(actualTripRoute);
 
 		return shortestRoute(storedTripRoutes);
 	}
 
 	private Integer findTripsThatHaveWaysSmallerThan(City originCity, Integer wayLength) throws RouteNotFoundException{
-		
-		//CDC, CEBC, CEBCDC, CDCEBC, CDEBC, CEBCEBC, CEBCEBCEBC
 		
 		for (Route route : originCity.getRoutesFromThisCity()) {
 			
@@ -126,7 +125,7 @@ public class TripManager {
 			}
 			
 			if(isLastRouteWithTheSameOrigin(route)){
-				removeLastRoute();
+				removeLastRoute(actualTripRoute);
 			}
 			
 			actualTripRoute.add(route);
@@ -141,7 +140,7 @@ public class TripManager {
 			
 		}
 		
-		removeLastRoute();
+		removeLastRoute(actualTripRoute);
 
 		return storedTripRoutes.size();
 		
@@ -173,9 +172,9 @@ public class TripManager {
 		
 	}
 	
-	private void removeLastRoute(){
-		if(!actualTripRoute.isEmpty()){
-			actualTripRoute.remove(actualTripRoute.size() -1);	
+	private void removeLastRoute(List<Route> routes){
+		if(!routes.isEmpty()){
+			routes.remove(routes.size() -1);	
 		}
 		
 	}
@@ -184,22 +183,13 @@ public class TripManager {
 		
 		boolean updated = false;
 		
-		if(isRouteNeverTraveled(actualTripRoute, route)){
+		if(!actualTripRoute.contains(route)){
 			updated = actualTripRoute.add(route);
 		}
 		
 		return updated;
 	}
 	
-	private int verifyStartCity(int numberOfStops, Set<Route> traveledRoutes, Route route) {
-		
-		if (isTripStart(route) && this.isRouteNeverTraveled(traveledRoutes, route)) {
-			numberOfStops = 0;
-			actualTripRoute.clear();
-		}
-		return numberOfStops;
-	}
-
 	private boolean isTravelingInCircles(Route route) {
 		return actualTripRoute.size() >= 2 && 
 				actualTripRoute.get(actualTripRoute.size() -2).equals(route);
@@ -207,10 +197,6 @@ public class TripManager {
 	
 	private boolean isLastRouteWithTheSameOrigin(Route route){
 		return !actualTripRoute.isEmpty() && actualTripRoute.get(actualTripRoute.size() -1).getOrigin().equals(route.getOrigin());
-	}
-	
-	private boolean isTripStart(Route route) {
-		return route.getOrigin().equals(tripStart());
 	}
 	
 	private City tripDestiny() {
@@ -225,8 +211,4 @@ public class TripManager {
 		return new City(trip.getCities().get(0));
 	}
 	
-	private boolean isRouteNeverTraveled(final Collection<Route> seenRoutes, final Route route) {
-
-		return !seenRoutes.contains(route);
-	}
 }
