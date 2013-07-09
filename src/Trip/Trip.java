@@ -1,5 +1,5 @@
 
-package Trip;
+package trip;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;

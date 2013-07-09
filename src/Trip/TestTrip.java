@@ -1,4 +1,4 @@
-package Trip;
+package trip;
 
 import static org.junit.Assert.assertEquals;
 
