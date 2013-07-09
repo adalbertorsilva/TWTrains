@@ -96,7 +96,6 @@ public class TripManager {
 		for (Route route : originCity.getRoutesFromThisCity()) {
 			
 			if(isTravelingInCircles(route)){
-				removeLastRoute(actualTripRoute);
 				break;
 			}
 			

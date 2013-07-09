@@ -2,6 +2,7 @@
 package Trip;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import routes.Route;
@@ -34,7 +35,7 @@ public class Trip {
 
 	}
 	
-	public Integer getTotalDistanceByCities(List<Character> cities) throws RouteNotFoundException {
+	private Integer getTotalDistanceByCities(List<Character> cities) throws RouteNotFoundException {
 
 		Integer totalDistance = 0;
 		int i = 0;
@@ -54,7 +55,7 @@ public class Trip {
 
 	}
 	
-	public Integer getTotalDistanceByRoutes(Collection<Route> routes)  {
+	private Integer getTotalDistanceByRoutes(Collection<Route> routes)  {
 
 		Integer totalDistance = 0;
 		
