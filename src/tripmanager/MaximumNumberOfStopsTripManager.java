@@ -2,9 +2,9 @@ package tripmanager;
 
 import java.util.ArrayList;
 
-import city.City;
 import routes.Route;
 import trip.Trip;
+import city.City;
 
 public class MaximumNumberOfStopsTripManager extends TripManager{
 

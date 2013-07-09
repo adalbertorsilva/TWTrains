@@ -12,7 +12,6 @@ import routes.RouteAE;
 import routes.RouteBC;
 import routes.RouteCD;
 import routes.RouteEB;
-
 import exceptions.RouteNotFoundException;
 
 public class TestTrip {

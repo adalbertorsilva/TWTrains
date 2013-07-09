@@ -52,8 +52,4 @@ public abstract class TripManager {
 		return new City(trip.getCities().get(0));
 	}
 	
-	public void helloWorld(){
-		System.out.println("Hello World");
-	}
-	
 }

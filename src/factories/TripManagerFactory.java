@@ -1,11 +1,11 @@
 package factories;
 
 import trip.Trip;
+import tripmanager.ExactNumberOfStopsTripManager;
 import tripmanager.LimitedWayTripManager;
+import tripmanager.MaximumNumberOfStopsTripManager;
 import tripmanager.ShortestRouteTripManager;
 import tripmanager.TripManager;
-import tripmanager.MaximumNumberOfStopsTripManager;
-import tripmanager.ExactNumberOfStopsTripManager;
 import contants.TripManagersEnum;
 
 public class TripManagerFactory {

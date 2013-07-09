@@ -3,10 +3,10 @@ package tripmanager;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import city.City;
-import exceptions.RouteNotFoundException;
 import routes.Route;
 import trip.Trip;
+import city.City;
+import exceptions.RouteNotFoundException;
 
 public class ShortestRouteTripManager extends TripManager {
 

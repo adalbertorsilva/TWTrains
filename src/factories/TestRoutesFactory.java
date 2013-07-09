@@ -1,11 +1,11 @@
 package factories;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
-
-import exceptions.RouteNotFoundException;
 
 import routes.Route;
 import routes.RouteAB;
