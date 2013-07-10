@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import city.City;
+
 import routes.Route;
 import routes.RouteAB;
 import routes.RouteAD;
@@ -48,12 +50,15 @@ public class TestRoutesFactory {
 	 * 6. Test create route D -> E
 	 * 
 	 * 6. Test create route E -> B
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws ClassNotFoundException 
 	 */
 
 	@Test
-	public void testWaysFromCityA() {
+	public void testWaysFromCityA() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-		final List<Route> ways = RoutesFactory.createRoutesFromTheCity('A');
+		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('A'));
 
 		assertEquals(ways.size(), 3);
 		assertTrue(ways.contains(new RouteAB()));
@@ -63,9 +68,9 @@ public class TestRoutesFactory {
 	}
 
 	@Test
-	public void testWaysFromCityB() {
+	public void testWaysFromCityB() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-		final List<Route> ways = RoutesFactory.createRoutesFromTheCity('B');
+		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('B'));
 
 		assertEquals(ways.size(), 1);
 		assertTrue(ways.contains(new RouteBC()));
@@ -73,9 +78,9 @@ public class TestRoutesFactory {
 	}
 
 	@Test
-	public void testWaysFromCityC() {
+	public void testWaysFromCityC() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-		final List<Route> ways = RoutesFactory.createRoutesFromTheCity('C');
+		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('C'));
 
 		assertEquals(ways.size(), 2);
 		assertTrue(ways.contains(new RouteCD()));
@@ -84,9 +89,9 @@ public class TestRoutesFactory {
 	}
 
 	@Test
-	public void testWaysFromCityD() {
+	public void testWaysFromCityD() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-		final List<Route> ways = RoutesFactory.createRoutesFromTheCity('D');
+		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('D'));
 
 		assertEquals(ways.size(), 2);
 		assertTrue(ways.contains(new RouteDC()));
@@ -95,9 +100,9 @@ public class TestRoutesFactory {
 	}
 
 	@Test
-	public void testWaysFromCityE() {
+	public void testWaysFromCityE() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-		final List<Route> ways = RoutesFactory.createRoutesFromTheCity('E');
+		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('E'));
 
 		assertEquals(ways.size(), 1);
 		assertTrue(ways.contains(new RouteEB()));

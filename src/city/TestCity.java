@@ -60,7 +60,7 @@ public class TestCity {
 	}
 
 	@Test
-	public void testAmountOfRoutesFromCityA() {
+	public void testAmountOfRoutesFromCityA() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		final City cityA = new City('A');
 		assertEquals(cityA.getRoutesFromThisCity().size(), 3);
@@ -70,7 +70,7 @@ public class TestCity {
 	}
 
 	@Test
-	public void testIfCityAIsTheOriginOfItsRoutes() {
+	public void testIfCityAIsTheOriginOfItsRoutes() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		final City cityA = new City('A');
 
@@ -89,7 +89,7 @@ public class TestCity {
 	}
 
 	@Test
-	public void testAmountOfRoutesFromCityB() {
+	public void testAmountOfRoutesFromCityB() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		final City cityB = new City('B');
 		assertEquals(cityB.getRoutesFromThisCity().size(), 1);
@@ -97,7 +97,7 @@ public class TestCity {
 	}
 
 	@Test
-	public void testIfCityBIsTheOriginOfItsRoutes() {
+	public void testIfCityBIsTheOriginOfItsRoutes() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		final City cityB = new City('B');
 
@@ -115,7 +115,7 @@ public class TestCity {
 	}
 
 	@Test
-	public void testAmountOfRoutesFromCityC() {
+	public void testAmountOfRoutesFromCityC() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		final City cityC = new City('C');
 		assertEquals(cityC.getRoutesFromThisCity().size(), 2);
@@ -124,7 +124,7 @@ public class TestCity {
 	}
 
 	@Test
-	public void testIfCityCIsTheOriginOfItsRoutes() {
+	public void testIfCityCIsTheOriginOfItsRoutes() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		final City cityC = new City('C');
 
@@ -142,7 +142,7 @@ public class TestCity {
 	}
 
 	@Test
-	public void testAmountOfRoutesFromCityD() {
+	public void testAmountOfRoutesFromCityD() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		final City cityD = new City('D');
 		assertEquals(cityD.getRoutesFromThisCity().size(), 2);
@@ -151,7 +151,7 @@ public class TestCity {
 	}
 
 	@Test
-	public void testIfCityDIsTheOriginOfItsRoutes() {
+	public void testIfCityDIsTheOriginOfItsRoutes() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		final City cityD = new City('D');
 
@@ -169,7 +169,7 @@ public class TestCity {
 	}
 
 	@Test
-	public void testAmountOfRoutesFromCityE() {
+	public void testAmountOfRoutesFromCityE() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		final City cityE = new City('E');
 		assertEquals(cityE.getRoutesFromThisCity().size(), 1);
@@ -177,7 +177,7 @@ public class TestCity {
 	}
 
 	@Test
-	public void testIfCityEIsTheOriginOfItsRoutes() {
+	public void testIfCityEIsTheOriginOfItsRoutes() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		final City cityE = new City('E');
 

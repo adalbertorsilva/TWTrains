@@ -23,10 +23,13 @@ public class TestTrip {
 	 *  2. Test method that calculate the total trip distance (A-B-C / A-D / A-D-C / A-E-B-C-D) 
 	 *  
 	 *  3. Test method to find a number of trips of a city to another with a maximum number of stops
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws ClassNotFoundException 
 	 */
 
 	@Test(expected = RouteNotFoundException.class)
-	public void testFindingAnExistingRoute() throws RouteNotFoundException {
+	public void testFindingAnExistingRoute() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		final Trip trip = new Trip('A', 'E', 'D');
 		trip.getTotalDistance();
@@ -34,32 +37,32 @@ public class TestTrip {
 	}
 	
 	@Test
-	public void testGetTotalDistanceToTripABC() throws RouteNotFoundException{
+	public void testGetTotalDistanceToTripABC() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		final Trip trip = new Trip('A', 'B' ,'C');
 		assertEquals(trip.getTotalDistance(), new Integer(9));
 	}
 	
 	@Test
-	public void testGetTotalDistanceToTripAD() throws RouteNotFoundException{
+	public void testGetTotalDistanceToTripAD() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		final Trip trip = new Trip('A', 'D');
 		assertEquals(trip.getTotalDistance(), new Integer(5));
 	}
 	
 	@Test
-	public void testGetTotalDistanceToTripADC() throws RouteNotFoundException{
+	public void testGetTotalDistanceToTripADC() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		final Trip trip = new Trip('A', 'D' ,'C');
 		assertEquals(trip.getTotalDistance(), new Integer(13));
 	}
 	
 	@Test
-	public void testGetTotalDistanceToTripAEBCD() throws RouteNotFoundException{
+	public void testGetTotalDistanceToTripAEBCD() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		final Trip trip = new Trip('A','E','B','C','D');
 		assertEquals(trip.getTotalDistance(), new Integer(22));
 	}
 	
 	@Test
 	
-	public void testGetTotalDistanceToTripAEBCDByRoutes() throws RouteNotFoundException{
+	public void testGetTotalDistanceToTripAEBCDByRoutes() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		
 		List<Route> routes = new ArrayList<Route>();
 		routes.add(new RouteAE());

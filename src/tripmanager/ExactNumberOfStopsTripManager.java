@@ -14,11 +14,11 @@ public class ExactNumberOfStopsTripManager extends TripManager {
 	}
 
 	@Override
-	public Integer getTrip(Integer limit) throws RouteNotFoundException{
+	public Integer getTrip(Integer limit) throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		return findAmountOfTripsWithAExactNumberOfStops(limit, tripStart());
 	}
 	
-	private Integer findAmountOfTripsWithAExactNumberOfStops(Integer exactNumberOfStops, City originCity) throws RouteNotFoundException {
+	private Integer findAmountOfTripsWithAExactNumberOfStops(Integer exactNumberOfStops, City originCity) throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		
 		for (Route route : originCity.getRoutesFromThisCity()) {
 			

@@ -19,9 +19,9 @@ public class City {
 		return this.cityName;
 	}
 
-	public List<Route> getRoutesFromThisCity() {
+	public List<Route> getRoutesFromThisCity() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-		return RoutesFactory.createRoutesFromTheCity(this.cityName);
+		return RoutesFactory.createRoutesFromTheCity(this);
 	}
 
 	@Override

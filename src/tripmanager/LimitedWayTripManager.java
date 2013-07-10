@@ -14,11 +14,11 @@ public class LimitedWayTripManager extends TripManager {
 	}
 
 	@Override
-	public Integer getTrip(Integer limit) throws RouteNotFoundException{
+	public Integer getTrip(Integer limit) throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		return findTripsThatHaveWaysSmallerThan(tripStart(), limit);
 	}
 	
-	private Integer findTripsThatHaveWaysSmallerThan(City originCity, Integer wayLength) throws RouteNotFoundException{
+	private Integer findTripsThatHaveWaysSmallerThan(City originCity, Integer wayLength) throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		
 		for (Route route : originCity.getRoutesFromThisCity()) {
 			
@@ -49,11 +49,11 @@ public class LimitedWayTripManager extends TripManager {
 	}
 
 	private boolean isLengthExceded(Integer wayLength)
-			throws RouteNotFoundException {
+			throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		return getTripDistance() < wayLength;
 	}
 	
-	private Integer getTripDistance() throws RouteNotFoundException{
+	private Integer getTripDistance() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		return new Trip(actualTripRoute).getTotalDistance();
 	}
 
