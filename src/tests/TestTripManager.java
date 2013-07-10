@@ -1,10 +1,11 @@
-package tripmanager;
+package tests;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import trip.Trip;
+import tripmanager.TripManager;
 import contants.TripManagersEnum;
 import exceptions.RouteNotFoundException;
 import factories.TripManagerFactory;

@@ -1,4 +1,4 @@
-package factories;
+package tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import city.City;
+import factories.RoutesFactory;
 
 import routes.Route;
 import routes.RouteAB;
@@ -21,39 +22,6 @@ import routes.RouteDE;
 import routes.RouteEB;
 
 public class TestRoutesFactory {
-
-	/**
-	 * 1. Test ways from A
-	 * 
-	 * 2. Test ways from B
-	 * 
-	 * 3. Test ways from C
-	 * 
-	 * 4. Test ways from D
-	 * 
-	 * 5. Test ways from E
-	 * 
-	 * 6. Test create route A -> B
-	 * 
-	 * 6. Test create route A -> D
-	 * 
-	 * 6. Test create route A -> E
-	 * 
-	 * 6. Test create route B -> C
-	 * 
-	 * 6. Test create route C -> D
-	 * 
-	 * 6. Test create route C -> E
-	 * 
-	 * 6. Test create route D -> C
-	 * 
-	 * 6. Test create route D -> E
-	 * 
-	 * 6. Test create route E -> B
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
-	 * @throws ClassNotFoundException 
-	 */
 
 	@Test
 	public void testWaysFromCityA(){

@@ -1,4 +1,4 @@
-package factories;
+package tests;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,6 +10,7 @@ import tripmanager.LimitedWayTripManager;
 import tripmanager.MaximumNumberOfStopsTripManager;
 import tripmanager.ShortestRouteTripManager;
 import contants.TripManagersEnum;
+import factories.TripManagerFactory;
 
 
 public class TestTripManagerFactory {

@@ -1,4 +1,4 @@
-package trip;
+package tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,21 +12,10 @@ import routes.RouteAE;
 import routes.RouteBC;
 import routes.RouteCD;
 import routes.RouteEB;
+import trip.Trip;
 import exceptions.RouteNotFoundException;
 
 public class TestTrip {
-
-	/**
-	 * 1. Test throw an exception when a non-existing route is passed ( A-E-D )
-	 * @throws RouteNotFoundException
-	 * 
-	 *  2. Test method that calculate the total trip distance (A-B-C / A-D / A-D-C / A-E-B-C-D) 
-	 *  
-	 *  3. Test method to find a number of trips of a city to another with a maximum number of stops
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
-	 * @throws ClassNotFoundException 
-	 */
 
 	@Test(expected = RouteNotFoundException.class)
 	public void testFindingAnExistingRoute() throws RouteNotFoundException{
