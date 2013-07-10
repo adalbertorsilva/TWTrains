@@ -29,7 +29,7 @@ public class TestTrip {
 	 */
 
 	@Test(expected = RouteNotFoundException.class)
-	public void testFindingAnExistingRoute() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public void testFindingAnExistingRoute() throws RouteNotFoundException{
 
 		final Trip trip = new Trip('A', 'E', 'D');
 		trip.getTotalDistance();
@@ -37,32 +37,32 @@ public class TestTrip {
 	}
 	
 	@Test
-	public void testGetTotalDistanceToTripABC() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+	public void testGetTotalDistanceToTripABC() throws RouteNotFoundException{
 		final Trip trip = new Trip('A', 'B' ,'C');
 		assertEquals(trip.getTotalDistance(), new Integer(9));
 	}
 	
 	@Test
-	public void testGetTotalDistanceToTripAD() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+	public void testGetTotalDistanceToTripAD() throws RouteNotFoundException{
 		final Trip trip = new Trip('A', 'D');
 		assertEquals(trip.getTotalDistance(), new Integer(5));
 	}
 	
 	@Test
-	public void testGetTotalDistanceToTripADC() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+	public void testGetTotalDistanceToTripADC() throws RouteNotFoundException{
 		final Trip trip = new Trip('A', 'D' ,'C');
 		assertEquals(trip.getTotalDistance(), new Integer(13));
 	}
 	
 	@Test
-	public void testGetTotalDistanceToTripAEBCD() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+	public void testGetTotalDistanceToTripAEBCD() throws RouteNotFoundException{
 		final Trip trip = new Trip('A','E','B','C','D');
 		assertEquals(trip.getTotalDistance(), new Integer(22));
 	}
 	
 	@Test
 	
-	public void testGetTotalDistanceToTripAEBCDByRoutes() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+	public void testGetTotalDistanceToTripAEBCDByRoutes() throws RouteNotFoundException{
 		
 		List<Route> routes = new ArrayList<Route>();
 		routes.add(new RouteAE());

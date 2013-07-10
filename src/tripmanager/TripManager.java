@@ -22,7 +22,7 @@ public abstract class TripManager {
 	}
 	
 	
-	public abstract Integer getTrip(Integer limit) throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException;
+	public abstract Integer getTrip(Integer limit) throws RouteNotFoundException;
 	
 	protected void removeLastRoute(List<Route> routes){
 		if(!routes.isEmpty()){

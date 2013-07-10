@@ -24,7 +24,7 @@ public class Trip {
 		this.tripRoutes = tripRoutes;
 	}
 
-	public Integer getTotalDistance() throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public Integer getTotalDistance() throws RouteNotFoundException{
 
 		if(tripRoutes != null){
 			return getTotalDistanceByRoutes(tripRoutes);
@@ -34,7 +34,7 @@ public class Trip {
 
 	}
 	
-	private Integer getTotalDistanceByCities(List<Character> cities) throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	private Integer getTotalDistanceByCities(List<Character> cities) throws RouteNotFoundException{
 
 		Integer totalDistance = 0;
 		int i = 0;
@@ -66,8 +66,7 @@ public class Trip {
 
 	}
 
-	private Route findRoute(City origintCity, City destinyCity)
-			throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	private Route findRoute(City origintCity, City destinyCity) throws RouteNotFoundException{
 
 		for (Route route : origintCity.getRoutesFromThisCity()) {
 			if (route.getDestiny().equals(destinyCity)) {

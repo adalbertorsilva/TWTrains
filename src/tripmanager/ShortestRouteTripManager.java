@@ -15,12 +15,12 @@ public class ShortestRouteTripManager extends TripManager {
 	}
 
 	@Override
-	public Integer getTrip(Integer limit) throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+	public Integer getTrip(Integer limit) throws RouteNotFoundException{
 		
 		return findShortestRoute(tripStart());
 	}
 	
-	private Integer findShortestRoute(City originCity) throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+	private Integer findShortestRoute(City originCity) throws RouteNotFoundException{
 		for (Route route : originCity.getRoutesFromThisCity()) {
 			
 			if(isTravelingInCircles(route)){
@@ -54,7 +54,7 @@ public class ShortestRouteTripManager extends TripManager {
 		return updated; 
 	}
 	
-	private Integer shortestRoute(Collection<Collection<Route>> tripRoutes) throws RouteNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+	private Integer shortestRoute(Collection<Collection<Route>> tripRoutes) throws RouteNotFoundException{
 		
 		Integer shortestDistance = 0;
 		

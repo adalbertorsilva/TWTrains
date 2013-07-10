@@ -56,7 +56,7 @@ public class TestRoutesFactory {
 	 */
 
 	@Test
-	public void testWaysFromCityA() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public void testWaysFromCityA(){
 
 		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('A'));
 
@@ -68,7 +68,7 @@ public class TestRoutesFactory {
 	}
 
 	@Test
-	public void testWaysFromCityB() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public void testWaysFromCityB(){
 
 		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('B'));
 
@@ -78,7 +78,7 @@ public class TestRoutesFactory {
 	}
 
 	@Test
-	public void testWaysFromCityC() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public void testWaysFromCityC(){
 
 		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('C'));
 
@@ -89,7 +89,7 @@ public class TestRoutesFactory {
 	}
 
 	@Test
-	public void testWaysFromCityD() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public void testWaysFromCityD(){
 
 		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('D'));
 
@@ -100,7 +100,7 @@ public class TestRoutesFactory {
 	}
 
 	@Test
-	public void testWaysFromCityE() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public void testWaysFromCityE(){
 
 		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('E'));
 

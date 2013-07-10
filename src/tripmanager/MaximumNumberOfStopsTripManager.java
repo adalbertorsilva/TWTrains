@@ -13,11 +13,11 @@ public class MaximumNumberOfStopsTripManager extends TripManager{
 	}
 
 	@Override
-	public Integer getTrip(Integer limit) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public Integer getTrip(Integer limit){
 		return findAmountOfTripsWithMaximumStops(limit, tripStart());
 	}
 	
-	private Integer findAmountOfTripsWithMaximumStops(Integer maximumNumberOfStops, City originCity) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	private Integer findAmountOfTripsWithMaximumStops(Integer maximumNumberOfStops, City originCity){
 
 		for (Route route : originCity.getRoutesFromThisCity()) {
 
