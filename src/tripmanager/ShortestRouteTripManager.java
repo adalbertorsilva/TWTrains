@@ -15,7 +15,7 @@ public class ShortestRouteTripManager extends TripManager {
 	}
 
 	@Override
-	public Integer getTrip(Integer limit) throws RouteNotFoundException{
+	public Integer getTripStats(Integer limit) throws RouteNotFoundException{
 		
 		return findShortestRoute(tripStart());
 	}

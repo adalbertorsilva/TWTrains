@@ -14,7 +14,7 @@ public class ExactNumberOfStopsTripManager extends TripManager {
 	}
 
 	@Override
-	public Integer getTrip(Integer limit) throws RouteNotFoundException{
+	public Integer getTripStats(Integer limit) throws RouteNotFoundException{
 		return findAmountOfTripsWithAExactNumberOfStops(limit, tripStart());
 	}
 	

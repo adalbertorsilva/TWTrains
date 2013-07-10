@@ -10,11 +10,11 @@ import exceptions.RouteNotFoundException;
 
 public class Trip {
 
-	private List<Character> cities;
+	private List<String> cities;
 	
 	private Collection<Route> tripRoutes;
 	
-	public Trip(Character... cities) {
+	public Trip(String... cities) {
 
 		this.cities = Arrays.asList(cities);
 	}
@@ -34,7 +34,7 @@ public class Trip {
 
 	}
 	
-	private Integer getTotalDistanceByCities(List<Character> cities) throws RouteNotFoundException{
+	private Integer getTotalDistanceByCities(List<String> cities) throws RouteNotFoundException{
 
 		Integer totalDistance = 0;
 		int i = 0;
@@ -78,7 +78,7 @@ public class Trip {
 
 	}
 
-	public List<Character> getCities() {
+	public List<String> getCities() {
 		return cities;
 	}
 	

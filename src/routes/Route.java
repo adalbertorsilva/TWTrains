@@ -2,13 +2,19 @@ package routes;
 
 import city.City;
 
-public abstract class Route {
+public class Route implements Comparable<Route>{
 
 	protected City origin;
 
 	protected City destiny;
 
 	protected Integer distance;;
+
+	public Route(City origin, City destiny, Integer distance) {
+		this.origin = origin;
+		this.destiny = destiny;
+		this.distance = distance;
+	}
 
 	public Integer getDistance() {
 
@@ -44,6 +50,15 @@ public abstract class Route {
 		}
 
 		return false;
+	}
+
+
+	@Override
+	public int compareTo(Route o) {
+		
+		Integer result = this.getOrigin().getCityName().compareTo(o.getOrigin().getCityName()); 
+		
+		return result == 0 ? this.getDestiny().getCityName().compareTo(o.getDestiny().getCityName()) : result;
 	}
 
 }

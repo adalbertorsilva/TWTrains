@@ -13,7 +13,7 @@ public class MaximumNumberOfStopsTripManager extends TripManager{
 	}
 
 	@Override
-	public Integer getTrip(Integer limit){
+	public Integer getTripStats(Integer limit){
 		return findAmountOfTripsWithMaximumStops(limit, tripStart());
 	}
 	

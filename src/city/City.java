@@ -7,21 +7,21 @@ import factories.RoutesFactory;
 
 public class City {
 
-	private final Character cityName;
+	private final String cityName;
 
-	public City(final Character cityName) {
+	public City(final String cityName) {
 
 		this.cityName = cityName;
 	}
 
-	public Character getCityName() {
+	public String getCityName() {
 
 		return this.cityName;
 	}
 
 	public List<Route> getRoutesFromThisCity(){
 
-		return RoutesFactory.createRoutesFromTheCity(this);
+		return RoutesFactory.createRoutesFrom(this);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class City {
 	public boolean equals(final Object obj) {
 
 		if ((obj != null) && (obj instanceof City)) {
-			return ((City) obj).getCityName().equals(this.cityName);
+			return ((City) obj).getCityName().equalsIgnoreCase(this.cityName);
 		}
 
 		return false;

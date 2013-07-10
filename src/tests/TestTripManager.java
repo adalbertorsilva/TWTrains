@@ -14,37 +14,37 @@ public class TestTripManager {
 
 	@Test
 	public void testGetNumberOfTripsWithAMaximumNumberOfStops() throws RouteNotFoundException{
-		Trip trip = new Trip('C','C');
+		Trip trip = new Trip("C","C");
 		TripManager tripManager = TripManagerFactory.getInstance(TripManagersEnum.MAXIMUM_NUMBER_OF_STOPS_TRIP_MANAGER, trip);
-		assertEquals(tripManager.getTrip(3), new Integer(2));
+		assertEquals(tripManager.getTripStats(3), new Integer(2));
 	}
 	
 	@Test
 	public void testGetNumberOfTripsWithNumberOfStops() throws RouteNotFoundException{
-		Trip trip = new Trip('A','C');
+		Trip trip = new Trip("A","C");
 		TripManager tripManager = TripManagerFactory.getInstance(TripManagersEnum.EXACT_NUMBER_OF_STOPS_TRIP_MANAGER, trip);
-		assertEquals(tripManager.getTrip(4), new Integer(3));
+		assertEquals(tripManager.getTripStats(4), new Integer(3));
 	}
 	
 	@Test
 	public void testFindingTheShortestRouteFromAToC() throws RouteNotFoundException{
-		Trip trip = new Trip('A','C');
+		Trip trip = new Trip("A","C");
 		TripManager tripManager = TripManagerFactory.getInstance(TripManagersEnum.SHORTEST_ROUTE_TRIP_MANAGER, trip);
-		assertEquals(tripManager.getTrip(null), new Integer(9));
+		assertEquals(tripManager.getTripStats(null), new Integer(9));
 	}
 	
 	@Test
 	public void testFindingTheShortestRouteFromBToB() throws RouteNotFoundException{
-		Trip trip = new Trip('B','B');
+		Trip trip = new Trip("B","B");
 		TripManager tripManager = TripManagerFactory.getInstance(TripManagersEnum.SHORTEST_ROUTE_TRIP_MANAGER, trip);
-		assertEquals(tripManager.getTrip(null), new Integer(9));
+		assertEquals(tripManager.getTripStats(null), new Integer(9));
 	}
 	
 	@Test
 	public void testFindingRoutesFromCToCWithAWaySmallerThan30() throws RouteNotFoundException{
-		Trip trip = new Trip('C','C');
+		Trip trip = new Trip("C","C");
 		TripManager tripManager = TripManagerFactory.getInstance(TripManagersEnum.LIMITED_WAY_TRIP_MANAGER, trip);
-		assertEquals(tripManager.getTrip(30), new Integer(7));
+		assertEquals(tripManager.getTripStats(30), new Integer(7));
 	}
 
 }

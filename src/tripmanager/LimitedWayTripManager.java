@@ -14,7 +14,7 @@ public class LimitedWayTripManager extends TripManager {
 	}
 
 	@Override
-	public Integer getTrip(Integer limit) throws RouteNotFoundException{
+	public Integer getTripStats(Integer limit) throws RouteNotFoundException{
 		return findTripsThatHaveWaysSmallerThan(tripStart(), limit);
 	}
 	

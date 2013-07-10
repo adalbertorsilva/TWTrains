@@ -7,73 +7,63 @@ import java.util.List;
 
 import org.junit.Test;
 
+import routes.Route;
 import city.City;
 import factories.RoutesFactory;
-
-import routes.Route;
-import routes.RouteAB;
-import routes.RouteAD;
-import routes.RouteAE;
-import routes.RouteBC;
-import routes.RouteCD;
-import routes.RouteCE;
-import routes.RouteDC;
-import routes.RouteDE;
-import routes.RouteEB;
 
 public class TestRoutesFactory {
 
 	@Test
 	public void testWaysFromCityA(){
 
-		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('A'));
+		final List<Route> ways = RoutesFactory.createRoutesFrom(new City("A"));
 
 		assertEquals(ways.size(), 3);
-		assertTrue(ways.contains(new RouteAB()));
-		assertTrue(ways.contains(new RouteAD()));
-		assertTrue(ways.contains(new RouteAE()));
+		assertTrue(ways.contains(new Route(new City("A"), new City("B"), 5)));
+		assertTrue(ways.contains(new Route(new City("A"), new City("D"), 5)));
+		assertTrue(ways.contains(new Route(new City("A"), new City("E"), 7)));
 
 	}
 
 	@Test
 	public void testWaysFromCityB(){
 
-		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('B'));
+		final List<Route> ways = RoutesFactory.createRoutesFrom(new City("B"));
 
 		assertEquals(ways.size(), 1);
-		assertTrue(ways.contains(new RouteBC()));
+		assertTrue(ways.contains(new Route(new City("B"), new City("C"), 4)));
 
 	}
 
 	@Test
 	public void testWaysFromCityC(){
 
-		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('C'));
+		final List<Route> ways = RoutesFactory.createRoutesFrom(new City("C"));
 
 		assertEquals(ways.size(), 2);
-		assertTrue(ways.contains(new RouteCD()));
-		assertTrue(ways.contains(new RouteCE()));
+		assertTrue(ways.contains(new Route(new City("C"), new City("D"), 8)));
+		assertTrue(ways.contains(new Route(new City("C"), new City("E"), 2)));
 
 	}
 
 	@Test
 	public void testWaysFromCityD(){
 
-		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('D'));
+		final List<Route> ways = RoutesFactory.createRoutesFrom(new City("D"));
 
 		assertEquals(ways.size(), 2);
-		assertTrue(ways.contains(new RouteDC()));
-		assertTrue(ways.contains(new RouteDE()));
+		assertTrue(ways.contains(new Route(new City("D"), new City("C"), 8)));
+		assertTrue(ways.contains(new Route(new City("D"), new City("E"), 6)));
 
 	}
 
 	@Test
 	public void testWaysFromCityE(){
 
-		final List<Route> ways = RoutesFactory.createRoutesFromTheCity(new City('E'));
+		final List<Route> ways = RoutesFactory.createRoutesFrom(new City("E"));
 
 		assertEquals(ways.size(), 1);
-		assertTrue(ways.contains(new RouteEB()));
+		assertTrue(ways.contains(new Route(new City("E"), new City("B"), 3)));
 
 	}
 	

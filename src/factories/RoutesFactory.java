@@ -1,68 +1,61 @@
 package factories;
 
-import java.io.File;
-import java.lang.reflect.Modifier;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 
 import routes.Route;
 import city.City;
 
 public class RoutesFactory {
+	
+	private static Properties properties = null;
+	
 
-	@SuppressWarnings("rawtypes")
-	public static List<Route> createRoutesFromTheCity(City city) {
+	public static List<Route> createRoutesFrom(City city) 
+{
 		
 		List<Route> routes = new ArrayList<Route>();
 		
 		try {
-			for(Class classe : getClasses("routes")){
-				
-				if(!Modifier.isAbstract(classe.getModifiers())){
+			properties = new Properties();
+			FileInputStream inputs = new FileInputStream("./properties/routes.properties");
+			properties.load(inputs);
 			
-					Route route  = (Route) classe.newInstance();
-					
-					if(route.getOrigin().equals(city)){
-						routes.add(route);
-					}
+			for(Object key : properties.keySet()){
+				
+				Route route = createRoute(key); 
+				
+				if(route.getOrigin().equals(city)){
+					routes.add(route);
 				}
 			}
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("Input not found");
+		} catch (IOException e) {
+			System.out.println("Input is not valid!");
 		}
 		
-		
+		Collections.sort(routes);
 		
 		return routes;
-
+		
 	}
 	
-	@SuppressWarnings("rawtypes")
-	 private static List<Class> getClasses(String pckgname){  
-		ArrayList<Class> classes=new ArrayList<Class>();
-			
-		File directory=null;
-	        
-		try {  
-			directory=new File(Thread.currentThread().getContextClassLoader().getResource(pckgname.replace('.', '/')).getFile());
-			
-			if(directory.exists()) {  
-				String[] files=directory.list();  
-				for(int i=0; i<files.length; i++) {  
-					if(files[i].endsWith(".class")) {  
-						classes.add(Class.forName(pckgname+'.'+files[i].substring(0, files[i].length()-6)));  
-					}  
-				}  
-			} 
-			
-		} catch(NullPointerException x) {  
-			System.out.println("package" + pckgname + "not found");
-		} catch (ClassNotFoundException e) {
-			System.out.println("package" + pckgname + "not found");
-		}
+	
+	private static Route createRoute(Object key){
 		
-		return classes;  
-	 } 
+		String keyName = (String) key;
+		
+		return new Route(new City(keyName.substring(keyName.length() -2, keyName.length() -1)), 
+						 new City(keyName.substring(keyName.length() -1)), 
+						 new Integer(properties.getProperty(keyName)));
+		
+	}
+	
 }
