@@ -6,7 +6,7 @@ import tripmanager.LimitedWayTripManager;
 import tripmanager.MaximumNumberOfStopsTripManager;
 import tripmanager.ShortestRouteTripManager;
 import tripmanager.TripManager;
-import contants.TripManagersEnum;
+import constants.TripManagersEnum;
 
 public class TripManagerFactory {
 

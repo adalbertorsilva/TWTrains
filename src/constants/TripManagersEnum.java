@@ -1,4 +1,4 @@
-package contants;
+package constants;
 
 public enum TripManagersEnum {
 	MAXIMUM_NUMBER_OF_STOPS_TRIP_MANAGER, 

@@ -9,7 +9,7 @@ import tripmanager.ExactNumberOfStopsTripManager;
 import tripmanager.LimitedWayTripManager;
 import tripmanager.MaximumNumberOfStopsTripManager;
 import tripmanager.ShortestRouteTripManager;
-import contants.TripManagersEnum;
+import constants.TripManagersEnum;
 import factories.TripManagerFactory;
 
 

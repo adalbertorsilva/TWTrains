@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import trip.Trip;
 import tripmanager.TripManager;
-import contants.TripManagersEnum;
+import constants.TripManagersEnum;
 import exceptions.RouteNotFoundException;
 import factories.TripManagerFactory;
 
