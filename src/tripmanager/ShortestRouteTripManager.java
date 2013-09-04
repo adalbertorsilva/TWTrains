@@ -1,17 +1,17 @@
 package tripmanager;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import routes.Route;
 import trip.Trip;
 import city.City;
 import exceptions.RouteNotFoundException;
 
-public class ShortestRouteTripManager extends TripManager {
+public class ShortestRouteTripManager extends DistanceTripManager {
 
-	public ShortestRouteTripManager(Trip trip) {
-		super(trip);
+	public ShortestRouteTripManager(City origin, City destiny) {
+		super(origin, destiny);
 	}
 
 	@Override
@@ -28,51 +28,42 @@ public class ShortestRouteTripManager extends TripManager {
 			}
 			
 			if(isLastRouteWithTheSameOrigin(route)){
-				removeLastRoute(actualTripRoute);
+				actualTrip.removeLastRouteFromTrip();
 			}
 
 			if ( updateTripRoute(route) && isTripsDestiny(route)) {
-				storedTripRoutes.add(new ArrayList<Route>(actualTripRoute));
+				storedTrips.add(actualTrip);
+				startAnotherTrip();
 			} else {
 				this.findShortestRoute(route.getDestiny());
 			}
 		}
 		
-		removeLastRoute(actualTripRoute);
+		actualTrip.removeLastRouteFromTrip();
 
-		return shortestRoute(storedTripRoutes);
+		return shortestRoute(storedTrips);
 	}
 	
 	private boolean updateTripRoute(Route route) {
 		
 		boolean updated = false;
 		
-		if(!actualTripRoute.contains(route)){
-			updated = actualTripRoute.add(route);
+		if(!actualTrip.getTripRoutes().contains(route)){
+			updated = actualTrip.getTripRoutes().add(route);
 		}
 		
 		return updated; 
 	}
 	
-	private Integer shortestRoute(Collection<Collection<Route>> tripRoutes) throws RouteNotFoundException{
+	private Integer shortestRoute(List<Trip> trips) throws RouteNotFoundException{
 		
-		Integer shortestDistance = 0;
-		
-		for(Collection<Route> trips : tripRoutes){
-			
-			Integer tripDistance = new Trip(trips).getTotalDistance();
-			
-			if(shortestDistance == 0){
-				shortestDistance = tripDistance;
-			}
-			
-			if(shortestDistance > tripDistance){
-				shortestDistance = tripDistance;
-			}
-			
+		Collections.sort(trips);
+
+		if(trips.isEmpty()){
+			return 0;
 		}
 		
-		return shortestDistance;
+		return trips.get(0).getTotalDistance();
 		
 	}
 

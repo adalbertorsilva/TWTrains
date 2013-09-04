@@ -1,85 +1,70 @@
 
 package trip;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 
 import routes.Route;
 import city.City;
 import exceptions.RouteNotFoundException;
 
-public class Trip {
+public class Trip implements Comparable<Trip>{
 
-	private List<String> cities;
+	private List<Route> tripRoutes;
 	
-	private Collection<Route> tripRoutes;
-	
-	public Trip(String... cities) {
+	public Trip(City origin, City destiny) {
 
-		this.cities = Arrays.asList(cities);
+		this.tripRoutes = new ArrayList<Route>();
 	}
 	
-	public Trip(final Collection<Route> tripRoutes) {
-
-		this.tripRoutes = tripRoutes;
-	}
-
-	public Integer getTotalDistance() throws RouteNotFoundException{
-
-		if(tripRoutes != null){
-			return getTotalDistanceByRoutes(tripRoutes);
-		}else{
-			return getTotalDistanceByCities(cities);
-		}
-
-	}
-	
-	private Integer getTotalDistanceByCities(List<String> cities) throws RouteNotFoundException{
-
-		Integer totalDistance = 0;
-		int i = 0;
-		while (i < cities.size() - 1) {
-
-			City origintCity = new City(cities.get(i));
-			City destinyCity = new City(cities.get(i + 1));
-
-			Route route = findRoute(origintCity, destinyCity);
-
-			totalDistance = totalDistance + route.getDistance();
-
-			i++;
-		}
-
-		return totalDistance;
-
-	}
-	
-	private Integer getTotalDistanceByRoutes(Collection<Route> routes)  {
+	public Integer getTotalDistance() throws RouteNotFoundException  {
 
 		Integer totalDistance = 0;
 		
-		for(Route route : routes){
-			totalDistance = totalDistance + route.getDistance();
+		for(Route route : tripRoutes){
+			
+			City origin = route.getOrigin();
+			
+			if(origin.getRoutesFromThisCity().contains(route)){
+				totalDistance = totalDistance + route.getDistance();
+			}else{
+				throw new RouteNotFoundException();
+			}
 		}	
 
 		return totalDistance;
-
-	}
-
-	private Route findRoute(City origintCity, City destinyCity) throws RouteNotFoundException{
-
-		for (Route route : origintCity.getRoutesFromThisCity()) {
-			if (route.getDestiny().equals(destinyCity)) {
-				return route;
-			}
-		}
-
-		throw new RouteNotFoundException();
-
-	}
-
-	public List<String> getCities() {
-		return cities;
 	}
 	
+	public void addRouteToTrip(Route route){
+		tripRoutes.add(route);
+	}
+	
+	public void removeLastRouteFromTrip(){
+		if(!tripRoutes.isEmpty()){
+			tripRoutes.remove(tripRoutes.size() -1);	
+		}
+		
+	}
+	
+	public List<Route> getTripRoutes() {
+		return tripRoutes;
+	}
+	
+	@Override
+	public int compareTo(Trip arg0) {
+		try {
+			return this.getTotalDistance().compareTo(arg0.getTotalDistance());
+		} catch (RouteNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}	
+	
+	@Override
+	public String toString() {
+		
+		StringBuilder builder = new StringBuilder(tripRoutes.toString());
+		builder.append("\n");
+		return builder.toString();
+	}
 }

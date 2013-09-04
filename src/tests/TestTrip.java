@@ -2,9 +2,6 @@ package tests;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 
 import routes.Route;
@@ -17,47 +14,50 @@ public class TestTrip {
 	@Test(expected = RouteNotFoundException.class)
 	public void testFindingAnExistingRoute() throws RouteNotFoundException{
 
-		final Trip trip = new Trip("A", "E", "D");
+		final Trip trip = new Trip(new City("A"),new City("D"));
+		trip.addRouteToTrip(new Route(new City("A"), new City("E"), 7));
+		trip.addRouteToTrip(new Route(new City("E"), new City("D"), 7));
 		trip.getTotalDistance();
 
 	}
 	
 	@Test
 	public void testGetTotalDistanceToTripABC() throws RouteNotFoundException{
-		final Trip trip = new Trip("A", "B" ,"C");
+		
+		final Trip trip = new Trip(new City("A"),new City("C"));
+		trip.addRouteToTrip(new Route(new City("A"), new City("B"), 5));
+		trip.addRouteToTrip(new Route(new City("B"), new City("C"), 4));
+		
 		assertEquals(trip.getTotalDistance(), new Integer(9));
 	}
 	
 	@Test
 	public void testGetTotalDistanceToTripAD() throws RouteNotFoundException{
-		final Trip trip = new Trip("A", "D");
+		
+		final Trip trip = new Trip(new City("A"),new City("D"));
+		trip.addRouteToTrip(new Route(new City("A"), new City("D"), 5));
 		assertEquals(trip.getTotalDistance(), new Integer(5));
 	}
 	
 	@Test
 	public void testGetTotalDistanceToTripADC() throws RouteNotFoundException{
-		final Trip trip = new Trip("A", "D" ,"C");
+		
+		final Trip trip = new Trip(new City("A"),new City("C"));
+		trip.addRouteToTrip(new Route(new City("A"), new City("D"), 5));
+		trip.addRouteToTrip(new Route(new City("D"), new City("C"), 8));
 		assertEquals(trip.getTotalDistance(), new Integer(13));
 	}
 	
 	@Test
 	public void testGetTotalDistanceToTripAEBCD() throws RouteNotFoundException{
-		final Trip trip = new Trip("A","E","B","C","D");
-		assertEquals(trip.getTotalDistance(), new Integer(22));
-	}
-	
-	@Test
-	
-	public void testGetTotalDistanceToTripAEBCDByRoutes() throws RouteNotFoundException{
-		
-		List<Route> routes = new ArrayList<Route>();
-		routes.add(new Route(new City("A"), new City("E"), 7));
-		routes.add(new Route(new City("E"), new City("B"), 3));
-		routes.add(new Route(new City("B"), new City("C"), 4));
-		routes.add(new Route(new City("C"), new City("D"), 8));
 		
 		
-		final Trip trip = new Trip(routes);
+		
+		final Trip trip = new Trip(new City("A"),new City("D"));
+		trip.addRouteToTrip(new Route(new City("A"), new City("E"), 7));
+		trip.addRouteToTrip(new Route(new City("E"), new City("B"), 3));
+		trip.addRouteToTrip(new Route(new City("B"), new City("C"), 4));
+		trip.addRouteToTrip(new Route(new City("C"), new City("D"), 8));
 		assertEquals(trip.getTotalDistance(), new Integer(22));
 	}
 	

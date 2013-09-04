@@ -1,16 +1,13 @@
 package tripmanager;
 
-import java.util.ArrayList;
-
 import routes.Route;
-import trip.Trip;
 import city.City;
 import exceptions.RouteNotFoundException;
 
-public class LimitedWayTripManager extends TripManager {
+public class LimitedWayTripManager extends DistanceTripManager {
 
-	public LimitedWayTripManager(Trip trip) {
-		super(trip);
+	public LimitedWayTripManager(City origin, City destiny) {
+		super(origin, destiny);
 	}
 
 	@Override
@@ -27,13 +24,14 @@ public class LimitedWayTripManager extends TripManager {
 			}
 			
 			if(isLastRouteWithTheSameOrigin(route)){
-				removeLastRoute(actualTripRoute);
+				actualTrip.removeLastRouteFromTrip();
 			}
 			
-			actualTripRoute.add(route);
+			actualTrip.addRouteToTrip(route);
 
 			if (isTripsDestiny(route) && isLengthExceded(wayLength)) {
-				storedTripRoutes.add(new ArrayList<Route>(actualTripRoute));
+				storedTrips.add(actualTrip);
+				startAnotherTrip();
 			}
 			
 			if(isLengthExceded(wayLength)){
@@ -42,19 +40,15 @@ public class LimitedWayTripManager extends TripManager {
 			
 		}
 		
-		removeLastRoute(actualTripRoute);
+		actualTrip.removeLastRouteFromTrip();
 
-		return storedTripRoutes.size();
+		return storedTrips.size();
 		
 	}
 
 	private boolean isLengthExceded(Integer wayLength)
 			throws RouteNotFoundException{
-		return getTripDistance() < wayLength;
+		return actualTrip.getTotalDistance() < wayLength;
 	}
 	
-	private Integer getTripDistance() throws RouteNotFoundException{
-		return new Trip(actualTripRoute).getTotalDistance();
-	}
-
 }

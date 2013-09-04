@@ -1,10 +1,7 @@
 package tripmanager;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import routes.Route;
 import trip.Trip;
@@ -13,43 +10,36 @@ import exceptions.RouteNotFoundException;
 
 public abstract class TripManager {
 	
-	protected Set<Collection<Route>> storedTripRoutes = new LinkedHashSet<Collection<Route>>();
-	protected List<Route> actualTripRoute = new ArrayList<Route>();
-	protected Trip trip;
+	protected List<Trip> storedTrips = new ArrayList<Trip>();
+	protected Trip actualTrip;
+	private City origin;
+	private City destiny;
 	
-	public TripManager(Trip trip) {
-		this.trip = trip;
+	public TripManager(City origin, City destiny) {
+		this.origin = origin;
+		this.destiny = destiny;
+		actualTrip = new Trip(origin, destiny);
 	}
-	
 	
 	public abstract Integer getTripStats(Integer limit) throws RouteNotFoundException;
 	
-	protected void removeLastRoute(List<Route> routes){
-		if(!routes.isEmpty()){
-			routes.remove(routes.size() -1);	
-		}
-		
-	}
-	
-	protected boolean isTravelingInCircles(Route route) {
-		return actualTripRoute.size() >= 2 && 
-				actualTripRoute.get(actualTripRoute.size() -2).equals(route);
-	}
-	
 	protected boolean isLastRouteWithTheSameOrigin(Route route){
-		return !actualTripRoute.isEmpty() && actualTripRoute.get(actualTripRoute.size() -1).getOrigin().equals(route.getOrigin());
-	}
-	
-	private City tripDestiny() {
-		return new City(trip.getCities().get(trip.getCities().size() - 1));
+		return !actualTrip.getTripRoutes().isEmpty() && actualTrip.getTripRoutes().get(actualTrip.getTripRoutes().size() -1).getOrigin().equals(route.getOrigin());
 	}
 	
 	protected boolean isTripsDestiny(Route route) {
-		return route.getDestiny().equals(tripDestiny());
+		return route.getDestiny().equals(destiny);
 	}
 
 	protected City tripStart() {
-		return new City(trip.getCities().get(0));
+		return origin;
+	}
+	
+	protected void startAnotherTrip(){
+		
+		Trip anotherTrip = new Trip(origin, destiny);
+		anotherTrip.getTripRoutes().addAll(actualTrip.getTripRoutes());
+		actualTrip = anotherTrip;
 	}
 	
 }

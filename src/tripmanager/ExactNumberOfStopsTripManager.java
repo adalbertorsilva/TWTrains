@@ -1,16 +1,13 @@
 package tripmanager;
 
-import java.util.ArrayList;
-
 import routes.Route;
-import trip.Trip;
 import city.City;
 import exceptions.RouteNotFoundException;
 
 public class ExactNumberOfStopsTripManager extends TripManager {
 
-	public ExactNumberOfStopsTripManager(Trip trip) {
-		super(trip);
+	public ExactNumberOfStopsTripManager(City origin, City destiny) {
+		super(origin, destiny);
 	}
 
 	@Override
@@ -23,25 +20,26 @@ public class ExactNumberOfStopsTripManager extends TripManager {
 		for (Route route : originCity.getRoutesFromThisCity()) {
 			
 			if(isLastRouteWithTheSameOrigin(route)){
-				removeLastRoute(actualTripRoute);
+				actualTrip.removeLastRouteFromTrip();
 			}
 			
-			if(actualTripRoute.size() > exactNumberOfStops){
+			if(actualTrip.getTripRoutes().size() > exactNumberOfStops){
 				break ;
 			}
 			
-			actualTripRoute.add(route);
+			actualTrip.addRouteToTrip(route);
 			
-			if (isTripsDestiny(route) && actualTripRoute.size() == exactNumberOfStops) {
-				storedTripRoutes.add(new ArrayList<Route>(actualTripRoute));
+			if (isTripsDestiny(route) && actualTrip.getTripRoutes().size() == exactNumberOfStops) {
+				storedTrips.add(actualTrip);
+				startAnotherTrip();
 			} else {
 				this.findAmountOfTripsWithAExactNumberOfStops(exactNumberOfStops, route.getDestiny());
 			}
 		}
 		
-		removeLastRoute(actualTripRoute);
+		actualTrip.removeLastRouteFromTrip();
 
-		return storedTripRoutes.size();
+		return storedTrips.size();
 	}
 
 }
